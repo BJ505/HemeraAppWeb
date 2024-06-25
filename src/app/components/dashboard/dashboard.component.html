@@ -1,0 +1,111 @@
+<nav class="navbar navbar-expand-sm hemera-navbar">
+    <div class="container-fluid">
+        <ul class="navbar-nav hemera-navbar-effect">
+            <a class="navbar-brand" href="#">
+                <img src="./assets/img/logo/ICONO.jpg" alt="" width="80" height="80">
+            </a>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard">Tienda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/cart">Carrito</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/login">Iniciar sesión</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <br>
+    <h2>Productos disponibles</h2>
+    <div class="grid-productos">
+        <!-- la data de estos productos se espera que cargue dinámicamente al grid con el archivo productos.json en un futuro, el código
+         de esta funcionalidad está avanzado en el dashboard.component.ts -->
+        <div class="product">
+            <div class="card">
+                <div class="ccc">
+                    <p class="text-center"><img src="./assets/img/products/vela-corazon.jpg" class="imw"></p>
+                </div>
+                <div class="card-body">
+                    <h5  class="text-center">Vela Corazón</h5> 
+                    <p  class="text-center">Precio: $9.990</p>
+                    <p class="text-center">
+                        <button (click)="addToCart(1, 1)" class="add-to-cart cc1">Agregar al carrito</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <div class="card">
+                <div class="ccc">
+                    <p class="text-center"><img src="./assets/img/products/vela-mandalas.jpg" class="imw"></p>
+                </div>
+                <div class="card-body">
+                    <h5  class="text-center">Vela Mandala</h5> 
+                    <p  class="text-center">Precio: $12.990</p>
+                    <p class="text-center">
+                        <button (click)="addToCart(2, 1)" class="add-to-cart cc1">Agregar al carrito</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <div class="card">
+                <div class="ccc">
+                    <p class="text-center"><img src="./assets/img/products/mosaico-cuadrado.jpg" class="imw"></p>
+                </div>
+                <div class="card-body">
+                    <h5  class="text-center">Vela Mosaico Cuadrada</h5> 
+                    <p  class="text-center">Precio: $8.990</p>
+                    <p class="text-center">
+                        <button (click)="addToCart(3, 1)" class="add-to-cart cc1">Agregar al carrito</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <div class="card">
+                <div class="ccc">
+                    <p class="text-center"><img src="./assets/img/products/vela-piramide.jpg" class="imw"></p>
+                </div>
+                <div class="card-body">
+                    <h5  class="text-center">Vela Piramide</h5> 
+                    <p  class="text-center">Precio: $4.990</p>
+                    <p class="text-center">
+                        <button (click)="addToCart(4, 1)" class="add-to-cart cc1">Agregar al carrito</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <div class="card">
+                <div class="ccc">
+                    <p class="text-center"><img src="./assets/img/products/vela-naranja-canela.jpg" class="imw"></p>
+                </div>
+                <div class="card-body">
+                    <h5  class="text-center">Vela Naranja</h5> 
+                    <p  class="text-center">Precio: $9.990</p>
+                    <p class="text-center">
+                        <button (click)="addToCart(5, 1)" class="add-to-cart cc1">Agregar al carrito</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <div class="card">
+                <div class="ccc">
+                    <p class="text-center"><img src="./assets/img/products/vela-roja.jpg" class="imw"></p>
+                </div>
+                <div class="card-body">
+                    <h5  class="text-center">Vela Roja</h5> 
+                    <p  class="text-center">Precio: $7.990</p>
+                    <p class="text-center">
+                        <button (click)="addToCart(6, 1)" class="add-to-cart cc1">Agregar al carrito</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

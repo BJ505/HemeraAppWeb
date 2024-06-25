@@ -1,0 +1,821 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>hemera-app-web documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">hemera-app-web documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  DashboardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/dashboard/dashboard.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente de dashboard.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-dashboard</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>RouterModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./dashboard.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./dashboard.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#addToCart" >addToCart</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, renderer: Renderer2, el: ElementRef, platformId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank">Object</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor del componente de dashboard.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Servicio de usuario para manejar el carrito.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                    <code>Renderer2</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Servicio para manipulación del DOM.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>el</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Referencia al elemento nativo del componente.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>platformId</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" >Object</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Identificador de la plataforma.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addToCart"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>addToCart</b></span>
+                        <a href="#addToCart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addToCart(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, cant: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Agrega un producto al carrito.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Identificador del producto.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>cant</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Cantidad del producto a agregar.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Método que se llama al inicializar el componente.
+Si está en el navegador, intenta cargar productos dinámicamente.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule, isPlatformBrowser } from &#x27;@angular/common&#x27;;
+import { Renderer2, ElementRef, ViewEncapsulation } from &#x27;@angular/core&#x27;;
+import { Component, OnInit, Inject, PLATFORM_ID } from &#x27;@angular/core&#x27;;
+import { UserService } from &#x27;../login/user.service&#x27;;
+import { RouterModule } from &#x27;@angular/router&#x27;;
+
+/**
+ * Componente de dashboard.
+ * @implements {OnInit}
+ */
+@Component({
+  selector: &#x27;app-dashboard&#x27;,
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  templateUrl: &#x27;./dashboard.component.html&#x27;,
+  styleUrl: &#x27;./dashboard.component.scss&#x27;,
+  encapsulation: ViewEncapsulation.None
+})
+export class DashboardComponent implements OnInit {
+
+  /**
+   * Constructor del componente de dashboard.
+   * @param {UserService} userService - Servicio de usuario para manejar el carrito.
+   * @param {Renderer2} renderer - Servicio para manipulación del DOM.
+   * @param {ElementRef} el - Referencia al elemento nativo del componente.
+   * @param {Object} platformId - Identificador de la plataforma.
+   */
+  constructor(
+    private userService: UserService,
+    private renderer: Renderer2,
+    private el: ElementRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+  /**
+   * Método que se llama al inicializar el componente.
+   * Si está en el navegador, intenta cargar productos dinámicamente.
+   * @returns {void}
+   */
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      /*
+       * Aún no puedo solucionar el tema de agregar botones dinámicamente y que funcione el evento click
+       * Consultar al profesor, por ahora solo agregaré en el HTML los productos.
+       */
+      // var grilla &#x3D; this.el.nativeElement.querySelector(&#x27;.grid-productos&#x27;);
+      // const fetchedData &#x3D; fetch(&#x27;./assets/data/productos.json&#x27;);
+      // fetchedData
+      // .then((response) &#x3D;&gt; response.json())
+      // .then((data) &#x3D;&gt; {
+      //   console.log(data);
+      //   var productos &#x3D; data;
+      //   for (const producto of productos) {
+      //       // Llenar grilla
+      //       grilla.insertAdjacentHTML(&#x27;beforeend&#x27;,&#x60;
+      //         &lt;div class&#x3D;&quot;product&quot;&gt;
+      //           &lt;div class&#x3D;&quot;card&quot;&gt;
+      //             &lt;div class&#x3D;&quot;ccc&quot;&gt;
+      //               &lt;p class&#x3D;&quot;text-center&quot;&gt;&lt;img src&#x3D;&quot;&#x60;+producto.imagen+&#x60;&quot; class&#x3D;&quot;imw&quot;&gt;&lt;/p&gt;
+      //             &lt;/div&gt;
+      //             &lt;div class&#x3D;&quot;card-body&quot;&gt;
+      //               &lt;h5 class&#x3D;&quot;text-center&quot;&gt;&#x60;+producto.nombre+&#x60;&lt;/h5&gt; 
+      //               &lt;p class&#x3D;&quot;text-center&quot;&gt;Precio: $&#x60;+producto.precio+&#x60;&lt;/p&gt;
+      //               &lt;p class&#x3D;&quot;text-center&quot;&gt;&lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;Agregar al carrito&quot; (click)&#x3D;&quot;addToCart(&#x60;+producto.id+&#x60;, 1)&quot; class&#x3D;&quot;add-to-cart cc1&quot;&gt;&lt;/p&gt;
+      //             &lt;/div&gt;
+      //           &lt;/div&gt;
+      //         &lt;/div&gt;&#x60;);   
+      //   }
+      // });
+    }
+  }
+  
+  /**
+   * Agrega un producto al carrito.
+   * @param {number} id - Identificador del producto.
+   * @param {number} cant - Cantidad del producto a agregar.
+   * @returns {void}
+   */
+  public addToCart(id: number, cant: number): void {
+    const agregado &#x3D; this.userService.addtocart(id, cant);
+    if (agregado) {
+      console.log(&quot;Producto agregado correctamente&quot;, agregado);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nav class&#x3D;&quot;navbar navbar-expand-sm hemera-navbar&quot;&gt;
+    &lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+        &lt;ul class&#x3D;&quot;navbar-nav hemera-navbar-effect&quot;&gt;
+            &lt;a class&#x3D;&quot;navbar-brand&quot; href&#x3D;&quot;#&quot;&gt;
+                &lt;img src&#x3D;&quot;./assets/img/logo/ICONO.jpg&quot; alt&#x3D;&quot;&quot; width&#x3D;&quot;80&quot; height&#x3D;&quot;80&quot;&gt;
+            &lt;/a&gt;
+            &lt;li class&#x3D;&quot;nav-item&quot;&gt;
+                &lt;a class&#x3D;&quot;nav-link&quot; routerLink&#x3D;&quot;/dashboard&quot;&gt;Tienda&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class&#x3D;&quot;nav-item&quot;&gt;
+                &lt;a class&#x3D;&quot;nav-link&quot; routerLink&#x3D;&quot;/cart&quot;&gt;Carrito&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class&#x3D;&quot;nav-item&quot;&gt;
+                &lt;a class&#x3D;&quot;nav-link&quot; routerLink&#x3D;&quot;/login&quot;&gt;Iniciar sesión&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+&lt;div class&#x3D;&quot;container&quot;&gt;
+    &lt;br&gt;
+    &lt;h2&gt;Productos disponibles&lt;/h2&gt;
+    &lt;div class&#x3D;&quot;grid-productos&quot;&gt;
+        &lt;!-- la data de estos productos se espera que cargue dinámicamente al grid con el archivo productos.json en un futuro, el código
+         de esta funcionalidad está avanzado en el dashboard.component.ts --&gt;
+        &lt;div class&#x3D;&quot;product&quot;&gt;
+            &lt;div class&#x3D;&quot;card&quot;&gt;
+                &lt;div class&#x3D;&quot;ccc&quot;&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;&lt;img src&#x3D;&quot;./assets/img/products/vela-corazon.jpg&quot; class&#x3D;&quot;imw&quot;&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                    &lt;h5  class&#x3D;&quot;text-center&quot;&gt;Vela Corazón&lt;/h5&gt; 
+                    &lt;p  class&#x3D;&quot;text-center&quot;&gt;Precio: $9.990&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;
+                        &lt;button (click)&#x3D;&quot;addToCart(1, 1)&quot; class&#x3D;&quot;add-to-cart cc1&quot;&gt;Agregar al carrito&lt;/button&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;product&quot;&gt;
+            &lt;div class&#x3D;&quot;card&quot;&gt;
+                &lt;div class&#x3D;&quot;ccc&quot;&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;&lt;img src&#x3D;&quot;./assets/img/products/vela-mandalas.jpg&quot; class&#x3D;&quot;imw&quot;&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                    &lt;h5  class&#x3D;&quot;text-center&quot;&gt;Vela Mandala&lt;/h5&gt; 
+                    &lt;p  class&#x3D;&quot;text-center&quot;&gt;Precio: $12.990&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;
+                        &lt;button (click)&#x3D;&quot;addToCart(2, 1)&quot; class&#x3D;&quot;add-to-cart cc1&quot;&gt;Agregar al carrito&lt;/button&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;product&quot;&gt;
+            &lt;div class&#x3D;&quot;card&quot;&gt;
+                &lt;div class&#x3D;&quot;ccc&quot;&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;&lt;img src&#x3D;&quot;./assets/img/products/mosaico-cuadrado.jpg&quot; class&#x3D;&quot;imw&quot;&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                    &lt;h5  class&#x3D;&quot;text-center&quot;&gt;Vela Mosaico Cuadrada&lt;/h5&gt; 
+                    &lt;p  class&#x3D;&quot;text-center&quot;&gt;Precio: $8.990&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;
+                        &lt;button (click)&#x3D;&quot;addToCart(3, 1)&quot; class&#x3D;&quot;add-to-cart cc1&quot;&gt;Agregar al carrito&lt;/button&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;product&quot;&gt;
+            &lt;div class&#x3D;&quot;card&quot;&gt;
+                &lt;div class&#x3D;&quot;ccc&quot;&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;&lt;img src&#x3D;&quot;./assets/img/products/vela-piramide.jpg&quot; class&#x3D;&quot;imw&quot;&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                    &lt;h5  class&#x3D;&quot;text-center&quot;&gt;Vela Piramide&lt;/h5&gt; 
+                    &lt;p  class&#x3D;&quot;text-center&quot;&gt;Precio: $4.990&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;
+                        &lt;button (click)&#x3D;&quot;addToCart(4, 1)&quot; class&#x3D;&quot;add-to-cart cc1&quot;&gt;Agregar al carrito&lt;/button&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;product&quot;&gt;
+            &lt;div class&#x3D;&quot;card&quot;&gt;
+                &lt;div class&#x3D;&quot;ccc&quot;&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;&lt;img src&#x3D;&quot;./assets/img/products/vela-naranja-canela.jpg&quot; class&#x3D;&quot;imw&quot;&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                    &lt;h5  class&#x3D;&quot;text-center&quot;&gt;Vela Naranja&lt;/h5&gt; 
+                    &lt;p  class&#x3D;&quot;text-center&quot;&gt;Precio: $9.990&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;
+                        &lt;button (click)&#x3D;&quot;addToCart(5, 1)&quot; class&#x3D;&quot;add-to-cart cc1&quot;&gt;Agregar al carrito&lt;/button&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;product&quot;&gt;
+            &lt;div class&#x3D;&quot;card&quot;&gt;
+                &lt;div class&#x3D;&quot;ccc&quot;&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;&lt;img src&#x3D;&quot;./assets/img/products/vela-roja.jpg&quot; class&#x3D;&quot;imw&quot;&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                    &lt;h5  class&#x3D;&quot;text-center&quot;&gt;Vela Roja&lt;/h5&gt; 
+                    &lt;p  class&#x3D;&quot;text-center&quot;&gt;Precio: $7.990&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;
+                        &lt;button (click)&#x3D;&quot;addToCart(6, 1)&quot; class&#x3D;&quot;add-to-cart cc1&quot;&gt;Agregar al carrito&lt;/button&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-sm hemera-navbar">    <div class="container-fluid">        <ul class="navbar-nav hemera-navbar-effect">            <a class="navbar-brand" href="#">                <img src="./assets/img/logo/ICONO.jpg" alt="" width="80" height="80">            </a>            <li class="nav-item">                <a class="nav-link" routerLink="/dashboard">Tienda</a>            </li>            <li class="nav-item">                <a class="nav-link" routerLink="/cart">Carrito</a>            </li>            <li class="nav-item">                <a class="nav-link" routerLink="/login">Iniciar sesión</a>            </li>        </ul>    </div></nav><div class="container">    <br>    <h2>Productos disponibles</h2>    <div class="grid-productos">        <!-- la data de estos productos se espera que cargue dinámicamente al grid con el archivo productos.json en un futuro, el código         de esta funcionalidad está avanzado en el dashboard.component.ts -->        <div class="product">            <div class="card">                <div class="ccc">                    <p class="text-center"><img src="./assets/img/products/vela-corazon.jpg" class="imw"></p>                </div>                <div class="card-body">                    <h5  class="text-center">Vela Corazón</h5>                     <p  class="text-center">Precio: $9.990</p>                    <p class="text-center">                        <button (click)="addToCart(1, 1)" class="add-to-cart cc1">Agregar al carrito</button>                    </p>                </div>            </div>        </div>        <div class="product">            <div class="card">                <div class="ccc">                    <p class="text-center"><img src="./assets/img/products/vela-mandalas.jpg" class="imw"></p>                </div>                <div class="card-body">                    <h5  class="text-center">Vela Mandala</h5>                     <p  class="text-center">Precio: $12.990</p>                    <p class="text-center">                        <button (click)="addToCart(2, 1)" class="add-to-cart cc1">Agregar al carrito</button>                    </p>                </div>            </div>        </div>        <div class="product">            <div class="card">                <div class="ccc">                    <p class="text-center"><img src="./assets/img/products/mosaico-cuadrado.jpg" class="imw"></p>                </div>                <div class="card-body">                    <h5  class="text-center">Vela Mosaico Cuadrada</h5>                     <p  class="text-center">Precio: $8.990</p>                    <p class="text-center">                        <button (click)="addToCart(3, 1)" class="add-to-cart cc1">Agregar al carrito</button>                    </p>                </div>            </div>        </div>        <div class="product">            <div class="card">                <div class="ccc">                    <p class="text-center"><img src="./assets/img/products/vela-piramide.jpg" class="imw"></p>                </div>                <div class="card-body">                    <h5  class="text-center">Vela Piramide</h5>                     <p  class="text-center">Precio: $4.990</p>                    <p class="text-center">                        <button (click)="addToCart(4, 1)" class="add-to-cart cc1">Agregar al carrito</button>                    </p>                </div>            </div>        </div>        <div class="product">            <div class="card">                <div class="ccc">                    <p class="text-center"><img src="./assets/img/products/vela-naranja-canela.jpg" class="imw"></p>                </div>                <div class="card-body">                    <h5  class="text-center">Vela Naranja</h5>                     <p  class="text-center">Precio: $9.990</p>                    <p class="text-center">                        <button (click)="addToCart(5, 1)" class="add-to-cart cc1">Agregar al carrito</button>                    </p>                </div>            </div>        </div>        <div class="product">            <div class="card">                <div class="ccc">                    <p class="text-center"><img src="./assets/img/products/vela-roja.jpg" class="imw"></p>                </div>                <div class="card-body">                    <h5  class="text-center">Vela Roja</h5>                     <p  class="text-center">Precio: $7.990</p>                    <p class="text-center">                        <button (click)="addToCart(6, 1)" class="add-to-cart cc1">Agregar al carrito</button>                    </p>                </div>            </div>        </div>    </div>    </div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavBarComponent', 'selector': 'app-nav-bar'},{'name': 'RegisterAdminComponent', 'selector': 'app-register-admin'},{'name': 'RegisterClientComponent', 'selector': 'app-register-client'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DashboardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DashboardComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

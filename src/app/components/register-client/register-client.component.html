@@ -1,0 +1,48 @@
+<div class="wrapper fadeInDown container">
+    <div id="formContent">
+
+        <div class="fadeIn first">
+            <!-- Logo -->
+            <img src="./assets/img/logo/LOGO-PNG-AMARILLO.png" class="img-login" id="icon" alt="User Icon" />
+        </div>
+
+        <!-- register Form -->
+        <form [formGroup]="clientForm" (ngSubmit)="submitClientForm()">
+            <div class="row">
+                <div class="form-group col-12">
+                    <label for="email">Dirección Email <b *ngIf="clientForm.get('email')?.hasError('email')">Email no valido</b></label>
+                    <input type="text" id="email" class="fadeIn second" name="email" formControlName="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="name">Nombre <b *ngIf="clientForm.get('nombre')?.hasError('required')">(Obligatorio)</b></label>
+                    <input type="text" id="name" class="fadeIn second" name="name" formControlName="nombre" placeholder="Nombre">
+                </div>
+                <div class="form-group col-6">
+                    <label for="username">Nombre de usuario <b *ngIf="clientForm.get('username')?.hasError('required')">(Obligatorio)</b></label>
+                    <input type="text" id="username" class="fadeIn second" formControlName="username" name="username" placeholder="Username">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="password">Contraseña <b *ngIf="clientForm.get('password')?.hasError('required')">(Obligatorio)</b></label>
+                    <input type="text" id="password" class="fadeIn third" name="password" formControlName="password" placeholder="Contraseña">
+                </div>
+                <div class="form-group col-6">
+                    <label for="repeat-password">Repetir contraseña</label>
+                    <input type="text" id="repeat-password" class="fadeIn second" name="repeat-password" placeholder="Repetir contraseña">
+                </div>
+            </div>
+            <input type="submit" class="fadeIn fourth" value="Entrar">
+        </form>
+
+        <!-- volver  -->
+        <div id="formFooter" class="row">
+            <div class="col-12">
+                <a class="underlineHover" routerLink="/login">Volver</a>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-sm hemera-navbar">
+    <div class="container-fluid">
+        <ul class="navbar-nav hemera-navbar-effect">
+            <a class="navbar-brand" href="#">
+                <img src="./assets/img/logo/ICONO.jpg" alt="" width="80" height="80">
+            </a>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard">Tienda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/cart">Carrito</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/login">Iniciar sesión</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <br>
+    <h2>Carrito</h2>
+    <table id="table-carrito" class="table">
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Nombre </th>
+                <th> Precio </th>
+                <th> Cantidad </th>
+                <th> Total </th>
+                <th> Acción </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <th colspan="4"></th>
+            <th colspan="1" id="totalfinal">Total: </th>
+            <th colspan="1"></th>
+        </tfoot>
+    </table>
+</div>

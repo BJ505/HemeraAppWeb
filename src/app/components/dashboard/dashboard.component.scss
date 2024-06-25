@@ -1,0 +1,110 @@
+/* ===============================COLORES==================================*/
+/*
+#E7C5ED;
+#EFDE96;D:\Yayo\Desktop\Estudios\FullStack-2\HemeraAppWeb\src\assets\img\FONDO.jpg
+#d7f2e7;
+#333333;
+*/
+body{
+    background-image: url("/assets/img/FONDO.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.product{
+    width: 33% !important;
+    display: inline-block;
+}
+
+.hemera-navbar{
+    background-color: #333333;
+}
+
+.hemera-navbar li{
+    align-content: center;
+}
+
+.hemera-navbar li a{
+    color: #EFDE96;
+    transition: 1s;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.hemera-navbar li a:hover {
+    color: #E7C5ED;
+    transition: 1s;
+}
+
+
+.img-table{
+    width: 100px !important;
+}
+
+.imw{
+    width: 65%;
+    position: relative;
+}
+.product{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 9;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #000;
+}
+
+.ccc:hover .overlay {
+    opacity: 0.7;
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.cc1{
+    width: 82%;
+    background: #333333;
+    color: #EFDE96;
+    padding: 4px 8px;
+    border: 1px solid #EFDE96;
+    height: 40px;
+    border-radius: 7px;
+}
+@media only screen and (max-width: 553px) {
+    .card{
+        margin-top: 25px;
+    }
+}
+.card{
+    border: 1px solid;
+    border-color: #EFDE96;
+    padding: 10px;
+    box-shadow: 5px 10px #efdf9670;
+}
+
+.hemera-button{
+    background: #333333;
+    color: #EFDE96;
+}
