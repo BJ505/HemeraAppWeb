@@ -3,6 +3,9 @@ import { Renderer2, ElementRef, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { UserService } from '../login/user.service';
 import { RouterModule } from '@angular/router';
+import { JsonProductsService } from '../../service/json-products.service'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 /**
  * Componente de dashboard.
@@ -11,13 +14,15 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HttpClientModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [JsonProductsService]
 })
 export class DashboardComponent implements OnInit {
 
+  productos: any[] = [];
   /**
    * Constructor del componente de dashboard.
    * @param {UserService} userService - Servicio de usuario para manejar el carrito.
@@ -29,8 +34,10 @@ export class DashboardComponent implements OnInit {
     private userService: UserService,
     private renderer: Renderer2,
     private el: ElementRef,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private jsonProductsService: JsonProductsService
   ) {}
+
 
   /**
    * Método que se llama al inicializar el componente.
@@ -39,34 +46,10 @@ export class DashboardComponent implements OnInit {
    */
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      /*
-       * Aún no puedo solucionar el tema de agregar botones dinámicamente y que funcione el evento click
-       * Consultar al profesor, por ahora solo agregaré en el HTML los productos.
-       */
-      // var grilla = this.el.nativeElement.querySelector('.grid-productos');
-      // const fetchedData = fetch('./assets/data/productos.json');
-      // fetchedData
-      // .then((response) => response.json())
-      // .then((data) => {
-      //   console.log(data);
-      //   var productos = data;
-      //   for (const producto of productos) {
-      //       // Llenar grilla
-      //       grilla.insertAdjacentHTML('beforeend',`
-      //         <div class="product">
-      //           <div class="card">
-      //             <div class="ccc">
-      //               <p class="text-center"><img src="`+producto.imagen+`" class="imw"></p>
-      //             </div>
-      //             <div class="card-body">
-      //               <h5 class="text-center">`+producto.nombre+`</h5> 
-      //               <p class="text-center">Precio: $`+producto.precio+`</p>
-      //               <p class="text-center"><input type="button" value="Agregar al carrito" (click)="addToCart(`+producto.id+`, 1)" class="add-to-cart cc1"></p>
-      //             </div>
-      //           </div>
-      //         </div>`);   
-      //   }
-      // });
+      this.jsonProductsService.getJsonData().subscribe(data => {
+          this.productos = data;
+          console.log(this.productos);
+      });
     }
   }
   
