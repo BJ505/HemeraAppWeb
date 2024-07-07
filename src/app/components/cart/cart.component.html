@@ -31,11 +31,24 @@
             </tr>
         </thead>
         <tbody>
+            <tr *ngFor="let productCart of carrito">
+                <td>{{productCart.id}}</td>
+                <td>{{productCart.nombre}}</td>
+                <td>{{productCart.precio}}</td>
+                <td>{{productCart.quantity}}</td>
+                <td>{{(productCart.precio * productCart.quantity)}}</td>
+                <td><button type="button" class="btn btn-primary hemera-button" (click)="deleteProductCart(productCart.id)" >Eliminar del carrito</button></td>
+            </tr>
         </tbody>
         <tfoot>
-            <th colspan="4"></th>
-            <th colspan="1" id="totalfinal">Total: </th>
-            <th colspan="1"></th>
+            <tr>
+                <td colspan="3"></td>
+                <td colspan="1" style="text-align: right;">Total:</td>
+                <td colspan="1">{{total}}</td>
+                <td colspan="1"></td>
+                
+            </tr>
+            
         </tfoot>
     </table>
 </div>

@@ -1,75 +1,52 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-// import { UserService } from './user.service';
+import { JsonProductsService } from '../../service/product/json-products.service';
+import { JsonCartService } from '../../service/cart/json-cart.service';
 
-
-interface Carrito {
-  id: number;
-  cant: number;
-}
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './cart.component.html',
   styleUrl: '../dashboard/dashboard.component.scss',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [JsonProductsService, JsonCartService]
 })
-export class CartComponent implements AfterViewInit {
-  private carrito: Carrito[] = [];
+export class CartComponent implements OnInit {
+  carrito: any[] = [];
+  total=0; 
+
   constructor(
     // private userService: UserService,
     private renderer: Renderer2,
     private el: ElementRef,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private productService: JsonProductsService,
+    private cartService: JsonCartService
   ) {}
 
-  ngAfterViewInit(): void {
-    if (this.isLocalStorageAvailable()) {
-      const carrito = localStorage.getItem('carrito');
-      this.carrito = carrito ? JSON.parse(carrito) : [];
-    }
+  ngOnInit(): void {
+    this.cartService.getCart().subscribe(data => {
+      this.carrito = data;
 
-    var tabla = this.el.nativeElement.querySelector('#table-carrito tbody');
-    var totalfinal = this.el.nativeElement.querySelector('#totalfinal');
-    const fetchedData = fetch('../assets/data/productos.json');
-    
-    fetchedData
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      var productos = data;
-      console.log(this.carrito);
-      var productoscarrito = this.carrito;
-      var totalproductos = 0;
-      for (const producto of productoscarrito) {
-        let existeproducto = productos.filter((prdto: { id: number; }) => prdto.id === producto.id);
-        let productoexistente = existeproducto[0];
-        console.log(productoexistente);
-        totalproductos += (productoexistente.precio * producto.cant);
-        tabla.insertAdjacentHTML('beforeend',`<tr>
-          <td>`+productoexistente.id+`</td>
-          <td>`+productoexistente.nombre+`</td>
-          <td>`+productoexistente.precio+`</td>
-          <td>`+producto.cant+`</td>
-          <td style="align: right;">`+(productoexistente.precio * producto.cant)+`</td>
-          <td><button type="button" class="btn btn-primary hemera-button" (click)="deletefromcart(`+productoexistente.id+`)" >Eliminar del carrito</button></td>
-        </tr>`);
-      }
-      totalfinal.insertAdjacentHTML('beforeend','$'+totalproductos);
-    });
+      //Obtener total del carrito
+      for(let j=0;j<this.carrito.length;j++){   
+        this.total+= (this.carrito[j].precio  * this.carrito[j].quantity);
+      }  
+    });  
   }
 
-  private isLocalStorageAvailable(): boolean {
-    try {
-    const test = '__test__';
-    localStorage.setItem(test, test);
-    localStorage.removeItem(test);
-    return true;
-    } catch (e) {
-    return false;
-    }
-}
+  public deleteProductCart(id: number): void {
+    this.cartService.deleteProductCart(id)
+    .then(() => {
+      console.log('Producto agregado correctamente al carrito!');
+      // Puedes realizar más acciones después de agregar el item
+    })
+    .catch(error => {
+      console.error('Error agregando producto al carrito:', error);
+      // Manejar el error adecuadamente
+    });
+  }
 }

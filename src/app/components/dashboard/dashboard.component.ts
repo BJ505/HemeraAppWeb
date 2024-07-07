@@ -1,8 +1,13 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Renderer2, ElementRef, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { UserService } from '../login/user.service';
 import { RouterModule } from '@angular/router';
+<<<<<<< Updated upstream
+=======
+import { JsonProductsService } from '../../service/product/json-products.service';
+import { JsonCartService } from '../../service/cart/json-cart.service';
+>>>>>>> Stashed changes
 
 /**
  * Componente de dashboard.
@@ -14,8 +19,14 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
+<<<<<<< Updated upstream
   encapsulation: ViewEncapsulation.None
+=======
+  encapsulation: ViewEncapsulation.None,
+  providers: [JsonProductsService, JsonCartService]
+>>>>>>> Stashed changes
 })
+
 export class DashboardComponent implements OnInit {
 
   /**
@@ -29,7 +40,13 @@ export class DashboardComponent implements OnInit {
     private userService: UserService,
     private renderer: Renderer2,
     private el: ElementRef,
+<<<<<<< Updated upstream
     @Inject(PLATFORM_ID) private platformId: Object
+=======
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private productService: JsonProductsService,
+    private cartService: JsonCartService
+>>>>>>> Stashed changes
   ) {}
 
   /**
@@ -38,6 +55,7 @@ export class DashboardComponent implements OnInit {
    * @returns {void}
    */
   ngOnInit(): void {
+<<<<<<< Updated upstream
     if (isPlatformBrowser(this.platformId)) {
       /*
        * Aún no puedo solucionar el tema de agregar botones dinámicamente y que funcione el evento click
@@ -68,6 +86,11 @@ export class DashboardComponent implements OnInit {
       //   }
       // });
     }
+=======
+    this.productService.getProducts().subscribe(data => {
+      this.productos = data;
+    });    
+>>>>>>> Stashed changes
   }
   
   /**
@@ -77,9 +100,15 @@ export class DashboardComponent implements OnInit {
    * @returns {void}
    */
   public addToCart(id: number, cant: number): void {
-    const agregado = this.userService.addtocart(id, cant);
-    if (agregado) {
-      console.log("Producto agregado correctamente", agregado);
-    }
+    console.log(id, cant);
+    this.cartService.addProductCart(id, cant)
+    .then(() => {
+      console.log('Producto agregado correctamente al carrito!');
+      // Puedes realizar más acciones después de agregar el item
+    })
+    .catch(error => {
+      console.error('Error agregando producto al carrito:', error);
+      // Manejar el error adecuadamente
+    });
   }
 }

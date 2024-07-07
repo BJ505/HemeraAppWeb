@@ -1,8 +1,40 @@
-[  
-    {"id": 1,"nombre":"Vela Corazón", "precio":9990, "imagen":"./assets/img/products/vela-corazon.jpg"},
-    {"id": 2,"nombre":"Vela Mandala", "precio":12990, "imagen":"./assets/img/products/vela-mandalas.jpg"},
-    {"id": 3,"nombre":"Vela Mosaico Cuadrado", "precio":8990, "imagen":"./assets/img/products/mosaico-cuadrado.jpg"},
-    {"id": 4,"nombre":"Vela Piramide", "precio":4990, "imagen":"./assets/img/products/vela-piramide.jpg"},
-    {"id": 5,"nombre":"Vela Naranja Canela", "precio":9990, "imagen":"./assets/img/products/vela-naranja-canela.jpg"},
-    {"id": 6,"nombre":"Vela Roja", "precio":7990, "imagen":"./assets/img/products/vela-roja.jpg"}
-]  
+{
+    "productos": [
+        {
+            "id": 1,
+            "nombre": "Vela Corazón",
+            "precio": 9990,
+            "imagen": "./assets/img/products/vela-corazon.jpg"
+        },
+        {
+            "id": 2,
+            "nombre": "Vela Mandala",
+            "precio": 12990,
+            "imagen": "./assets/img/products/vela-mandalas.jpg"
+        },
+        {
+            "id": 3,
+            "nombre": "Vela Mosaico Cuadrado",
+            "precio": 8990,
+            "imagen": "./assets/img/products/mosaico-cuadrado.jpg"
+        },
+        {
+            "id": 4,
+            "nombre": "Vela Piramide",
+            "precio": 4990,
+            "imagen": "./assets/img/products/vela-piramide.jpg"
+        },
+        {
+            "id": 5,
+            "nombre": "Vela Naranja Canela",
+            "precio": 9990,
+            "imagen": "./assets/img/products/vela-naranja-canela.jpg"
+        },
+        {
+            "id": 6,
+            "nombre": "Vela Roja",
+            "precio": 7990,
+            "imagen": "./assets/img/products/vela-roja.jpg"
+        }
+    ]
+}
