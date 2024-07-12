@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { JsonCartService } from '../../service/cart/json-cart.service';
 import { JsonUserService } from '../../service/user/json-user.service';
 import { UtilsService } from '../../service/utils/utils.service';
@@ -8,7 +9,7 @@ import { UtilsService } from '../../service/utils/utils.service';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NavBarComponent],
   templateUrl: './cart.component.html',
   styleUrl: '../dashboard/dashboard.component.scss',
   encapsulation: ViewEncapsulation.None,

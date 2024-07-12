@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Renderer2, ElementRef, ViewEncapsulation } from '@angular/core';
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { UserService } from '../login/user.service';
+import { ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { JsonProductsService } from '../../service/product/json-products.service';
 import { JsonCartService } from '../../service/cart/json-cart.service';
 import { JsonUserService } from '../../service/user/json-user.service';
@@ -15,7 +15,7 @@ import { UtilsService } from '../../service/utils/utils.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NavBarComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private userService: JsonUserService,
-    @Inject(PLATFORM_ID) private platformId: Object,
     private productService: JsonProductsService,
     private cartService: JsonCartService,
     private utilsService: UtilsService

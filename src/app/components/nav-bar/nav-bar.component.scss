@@ -1,0 +1,19 @@
+.hemera-navbar{
+    background-color: #333333;
+}
+
+.hemera-navbar li{
+    align-content: center;
+}
+
+.hemera-navbar li a{
+    color: #EFDE96;
+    transition: 1s;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.hemera-navbar li a:hover {
+    color: #E7C5ED;
+    transition: 1s;
+}
