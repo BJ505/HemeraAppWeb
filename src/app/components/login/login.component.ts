@@ -1,9 +1,10 @@
-import { Component, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { UserService } from './user.service';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { Renderer2, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
+import { JsonUserService } from '../../service/user/json-user.service';
+import { UtilsService } from '../../service/utils/utils.service';
 
 /**
  * Componente de inicio de sesión.
@@ -11,13 +12,15 @@ import { RouterModule, Router } from '@angular/router';
  */
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [JsonUserService,UtilsService]
 })
-export class LoginComponent implements AfterViewInit {
-  
+export class LoginComponent {
+  username: string = '';
+  password: string = '';
   /**
    * Constructor del componente.
    * @param {UserService} userService - Servicio de usuario para manejar el inicio de sesión.
@@ -27,41 +30,23 @@ export class LoginComponent implements AfterViewInit {
    * @param {Object} platformId - Identificador de la plataforma.
    */
   constructor(
-    private userService: UserService,
+    private userService: JsonUserService,
+    private utilsService: UtilsService,
     private renderer: Renderer2,
     private el: ElementRef,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  /**
-   * Método que se llama después de la inicialización de la vista del componente.
-   * Maneja el evento de envío del formulario de inicio de sesión.
-   * @returns {void}
-   */
-  ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      // Manejar el formulario de inicio de sesión
-      const formLogin = this.el.nativeElement.querySelector('#login-form') as HTMLFormElement;
-      if (formLogin) {
-        this.renderer.listen(formLogin, 'submit', (event: Event) => {
-          event.preventDefault();
-          event.stopPropagation();
-
-          const emailOrUsername = (this.el.nativeElement.querySelector('#username') as HTMLInputElement).value;
-          const password = (this.el.nativeElement.querySelector('#password') as HTMLInputElement).value;
-
-          console.log('Formulario de inicio de sesión enviado:', { emailOrUsername, password });
-
-          const loginExitoso = this.userService.iniciarSesion(emailOrUsername, password);
-          if (loginExitoso) {
-            console.log('Inicio de sesión exitoso:', { emailOrUsername });
-            this.router.navigate(['/dashboard']);
-          } else {
-            console.log('Error en el inicio de sesión.');
-          }
-        });
-      }
-    }
+    submitLoginForm(){
+    this.userService.authenticate(this.username, this.password)
+      .then(user => {
+        this.utilsService.mostrarAlerta('Usuario registrado exitosamente.', 'success');
+        this.router.navigate(['/dashboard']);
+        // Aquí puedes redirigir al usuario a otra página, almacenar el usuario en el estado de la aplicación, etc.
+      })
+      .catch(error => {
+        this.utilsService.mostrarAlerta('Usuario o contraseña incorrecto.', 'danger');
+      });
   }
 }
