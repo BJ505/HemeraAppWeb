@@ -12,8 +12,8 @@ export class JsonCartService {
 
   constructor(private db: Database) {}
 
-  getCart(): Observable<any[]> {
-    const cartRef = ref(this.db, 'cart');
+  getCart(user: string): Observable<any[]> {
+    const cartRef = ref(this.db, `cart/${user}`);
 
     return new Observable(observer => {
       onValue(cartRef, async snapshot => {
@@ -50,16 +50,16 @@ export class JsonCartService {
     });
   }
 
-  addProductCart(id: number, quantity: number): Promise<void> {
+  addProductCart(id: number, quantity: number, user: string): Promise<void> {
 
-    const cartRef = ref(this.db, `${this.dbPath}/${id}`);
+    const cartRef = ref(this.db, `${this.dbPath}/${user}/${id}`);
 
     return get(cartRef).then(cartSnapshot => {
       const existingProduct = cartSnapshot.val();
       if (existingProduct) {
         // El producto ya existe en el carrito, actualiza la cantidad
         const newQuantity = existingProduct.quantity + quantity;
-        return update(cartRef, { quantity: newQuantity });
+        return this.updateProductCart(id, { quantity: newQuantity },user);
       } else {
         // El producto no existe en el carrito, agrega el nuevo producto
         const newItem = {
@@ -74,13 +74,13 @@ export class JsonCartService {
     });
   }
 
-  updateProductCart(id: number, updates: any): void {
-    const itemRef = ref(this.db, `${this.dbPath}/${id}`);
+  updateProductCart(id: number, updates: any, user:string): void {
+    const itemRef = ref(this.db, `${this.dbPath}/${user}/${id}`);
     update(itemRef, updates);
   }
 
-  deleteProductCart(id: number): Promise<void> {
-    const itemRef = ref(this.db, `${this.dbPath}/${id}`);
+  deleteProductCart(id: number, user:string,): Promise<void> {
+    const itemRef = ref(this.db, `${this.dbPath}/${user}/${id}`);
     return remove(itemRef);
   }
 }

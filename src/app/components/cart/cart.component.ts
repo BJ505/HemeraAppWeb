@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { JsonProductsService } from '../../service/product/json-products.service';
 import { JsonCartService } from '../../service/cart/json-cart.service';
+import { JsonUserService } from '../../service/user/json-user.service';
+import { UtilsService } from '../../service/utils/utils.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,24 +12,22 @@ import { JsonCartService } from '../../service/cart/json-cart.service';
   templateUrl: './cart.component.html',
   styleUrl: '../dashboard/dashboard.component.scss',
   encapsulation: ViewEncapsulation.None,
-  providers: [JsonProductsService, JsonCartService]
+  providers: [JsonCartService, JsonUserService, UtilsService]
 })
 export class CartComponent implements OnInit {
   carrito: any[] = [];
   total=0; 
 
   constructor(
-    // private userService: UserService,
-    private renderer: Renderer2,
-    private el: ElementRef,
-    private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private productService: JsonProductsService,
-    private cartService: JsonCartService
+    private userService: JsonUserService,
+    private cartService: JsonCartService,
+    private utilsService: UtilsService
+
   ) {}
 
   ngOnInit(): void {
-    this.cartService.getCart().subscribe(data => {
+    const sessionUser = this.userService.getCurrentUser();
+    this.cartService.getCart(sessionUser.username).subscribe(data => {
       this.carrito = data;
 
       //Obtener total del carrito
@@ -39,12 +38,13 @@ export class CartComponent implements OnInit {
   }
 
   public deleteProductCart(id: number): void {
-    this.cartService.deleteProductCart(id)
+    const sessionUser = this.userService.getCurrentUser();
+    this.cartService.deleteProductCart(id, sessionUser.username)
     .then(() => {
-      console.log('Producto agregado correctamente al carrito!');
-      // Puedes realizar más acciones después de agregar el item
+      this.utilsService.mostrarAlerta("Producto agregado con éxito!", 'success');
     })
     .catch(error => {
+      this.utilsService.mostrarAlerta("No se pudo agregar el producto", 'danger');
       console.error('Error agregando producto al carrito:', error);
       // Manejar el error adecuadamente
     });

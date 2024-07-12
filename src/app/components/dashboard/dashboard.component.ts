@@ -5,6 +5,8 @@ import { UserService } from '../login/user.service';
 import { RouterModule } from '@angular/router';
 import { JsonProductsService } from '../../service/product/json-products.service';
 import { JsonCartService } from '../../service/cart/json-cart.service';
+import { JsonUserService } from '../../service/user/json-user.service';
+import { UtilsService } from '../../service/utils/utils.service';
 
 /**
  * Componente de dashboard.
@@ -17,25 +19,18 @@ import { JsonCartService } from '../../service/cart/json-cart.service';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   encapsulation: ViewEncapsulation.None,
-  providers: [JsonProductsService, JsonCartService]
+  providers: [JsonProductsService, JsonCartService, JsonUserService, UtilsService]
 })
 
 export class DashboardComponent implements OnInit {
   productos: any[] = [];
-  /**
-   * Constructor del componente de dashboard.
-   * @param {UserService} userService - Servicio de usuario para manejar el carrito.
-   * @param {Renderer2} renderer - Servicio para manipulación del DOM.
-   * @param {ElementRef} el - Referencia al elemento nativo del componente.
-   * @param {Object} platformId - Identificador de la plataforma.
-   */
+
   constructor(
-    private userService: UserService,
-    private renderer: Renderer2,
-    private el: ElementRef,
+    private userService: JsonUserService,
     @Inject(PLATFORM_ID) private platformId: Object,
     private productService: JsonProductsService,
-    private cartService: JsonCartService
+    private cartService: JsonCartService,
+    private utilsService: UtilsService
   ) {}
 
   /**
@@ -56,8 +51,13 @@ export class DashboardComponent implements OnInit {
    * @returns {void}
    */
   public addToCart(id: number, cant: number): void {
-    console.log(id, cant);
-    this.cartService.addProductCart(id, cant)
+    // console.log(id, cant);
+    const sessionUser = this.userService.getCurrentUser();
+    if (!sessionUser) {
+      this.utilsService.mostrarAlerta('Usuario no autenticado, porfavor primero inicie sesión.','warning')
+      return;
+    }
+    this.cartService.addProductCart(id, cant, sessionUser.username)
     .then(() => {
       console.log('Producto agregado correctamente al carrito!');
       // Puedes realizar más acciones después de agregar el item
