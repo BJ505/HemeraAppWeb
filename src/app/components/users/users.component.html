@@ -1,0 +1,38 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <br>
+    <h2>Mantenedor de Usuarios</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Nombre de usuario</th>
+                <th>Tipo de usuario</th>
+                <th>Contraseña</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; let i = index">
+                <td>{{i}}</td>
+                <td *ngIf="!user.editing">{{user.email}}</td>
+                <td *ngIf="user.editing"><input [(ngModel)]="user.email" /></td>
+                <td *ngIf="!user.editing">{{user.name}}</td>
+                <td *ngIf="user.editing"><input [(ngModel)]="user.name" /></td>
+                <td>{{user.username}}</td>
+                <td *ngIf="!user.editing">{{user.usertype}}</td>
+                <td *ngIf="user.editing"><input [(ngModel)]="user.usertype" /></td>
+                <td *ngIf="!user.editing">{{user.password}}</td>
+                <td *ngIf="user.editing"><input [(ngModel)]="user.password" /></td>
+                <td>
+                    <button *ngIf="!user.editing" type="button" class="btn hemera-primary-button" (click)="editUser(i)">Editar</button>
+                    <button *ngIf="user.editing" type="button" class="btn hemera-success-button" (click)="saveUser(user)">Guardar</button>
+                    <button *ngIf="user.editing" type="button" class="btn hemera-warning-button" (click)="cancelEdit(user, i)">Cancelar</button>
+                    <button *ngIf="!user.editing" type="button" class="btn hemera-danger-button" (click)="deleteUser(user.username)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

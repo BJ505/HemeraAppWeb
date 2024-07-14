@@ -1,0 +1,51 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <br>
+    <h2>Mantenedor de Productos</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Ruta img</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products; let i = index">
+                <td>{{product.id}}</td>
+                <td *ngIf="!product.editing">{{product.nombre}}</td>
+                <td *ngIf="product.editing"><input [(ngModel)]="product.nombre" /></td>
+                <td *ngIf="!product.editing">{{product.precio}}</td>
+                <td *ngIf="product.editing"><input [(ngModel)]="product.precio" /></td>
+                <td *ngIf="!product.editing">{{product.imagen}}</td>
+                <td *ngIf="product.editing"><input [(ngModel)]="product.imagen" /></td>
+                <td>
+                    <button *ngIf="!product.editing" type="button" class="btn hemera-primary-button" (click)="editProduct(i)">Editar</button>
+                    <button *ngIf="product.editing" type="button" class="btn hemera-success-button" (click)="saveProduct(product)">Guardar</button>
+                    <button *ngIf="product.editing" type="button" class="btn hemera-warning-button" (click)="cancelEdit(product, i)">Cancelar</button>
+                    <button *ngIf="!product.editing" type="button" class="btn hemera-danger-button" (click)="deleteProduct(product.id)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Formulario para añadir productos -->
+    <br>
+    <h3>Agregar Nuevo Producto</h3>
+    <form (ngSubmit)="addProduct()">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" [(ngModel)]="newProduct.nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input type="number" class="form-control" id="precio" [(ngModel)]="newProduct.precio" name="precio" required>
+        </div>
+        <div class="form-group">
+            <label for="imagen">Ruta de la Imagen:</label>
+            <input type="text" class="form-control" id="imagen" [(ngModel)]="newProduct.imagen" name="imagen" required>
+        </div>
+        <button type="submit" class="btn btn-primary hemera-button">Agregar Producto</button>
+    </form>
+</div>
