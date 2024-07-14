@@ -4,6 +4,8 @@ import { RegisterAdminComponent } from './components/register-admin/register-adm
 import { RegisterClientComponent } from './components/register-client/register-client.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CartComponent } from './components/cart/cart.component';
+import { UsersComponent } from './components/users/users.component';
+import { ProductsComponent } from './components/products/products.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -11,5 +13,7 @@ export const routes: Routes = [
     {path: 'register-admin', component: RegisterAdminComponent},
     {path: 'register-client', component: RegisterClientComponent},
     {path: 'dashboard', component: DashboardComponent},
-    {path: 'cart', component: CartComponent}
+    {path: 'cart', component: CartComponent},
+    {path: 'products', component: ProductsComponent},
+    {path: 'users', component: UsersComponent}
 ];
