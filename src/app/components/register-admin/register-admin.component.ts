@@ -2,13 +2,13 @@ import { Component} from '@angular/core';
 import { Renderer2, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JsonUserService } from '../../service/user/json-user.service'
 import { UtilsService } from '../../service/utils/utils.service';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule,ReactiveFormsModule],
+  imports: [CommonModule, RouterModule,ReactiveFormsModule, FormsModule],
   selector: 'app-register-admin',
   templateUrl: './register-admin.component.html',
   styleUrls: ['../login/login.component.scss'],
@@ -29,10 +29,13 @@ export class RegisterAdminComponent{
     private fb: FormBuilder,
   ) {
     this.adminForm = this.fb.group({
-      email:['', [Validators.required, Validators.email]],
-      nombre:['', [Validators.required]],
-      username:['', [Validators.required]],
-      password:['', [Validators.required]]      
+      user: this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
+        nombre: ['', [Validators.required]],
+        username: ['', [Validators.required]],
+        password: ['', [Validators.required]],
+        usertype: ['admin', [Validators.required]]
+      })
     });
   }
 
@@ -46,6 +49,8 @@ export class RegisterAdminComponent{
         console.log('Las contraseñas no coinciden.');
         return;
       }
+      this.user = this.adminForm.value.user;
+      console.log(this.user);
       
       this.userService.createUser(this.user)
       .then(success => {

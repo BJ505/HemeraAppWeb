@@ -8,34 +8,43 @@
 
         <!-- register Form -->
         <form [formGroup]="adminForm" (ngSubmit)="submitAdminForm()">
-            <div class="row">
-                <div class="form-group col-12">
-                    <label for="email">Dirección Email <b *ngIf="adminForm.get('email')?.hasError('email')">Email no valido</b></label>
-                    <input type="text" [(ngModel)]="user.email" id="email" class="fadeIn second" name="email" formControlName="email" placeholder="Email">
+            <div [formGroupName]="'user'">
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="email">Dirección Email <b *ngIf="adminForm.get('user.email')?.hasError('email')">Email no valido</b></label>
+                        <input type="text" id="email" class="fadeIn second" name="email" formControlName="email" placeholder="Email">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-6">
-                    <label for="name">Nombre <b *ngIf="adminForm.get('nombre')?.hasError('required')">(Obligatorio)</b></label>
-                    <input type="text" [(ngModel)]="user.name" id="name" class="fadeIn second" name="name" formControlName="nombre" placeholder="Nombre">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="name">Nombre <b *ngIf="adminForm.get('user.nombre')?.hasError('required')">(Obligatorio)</b></label>
+                        <input type="text" id="name" class="fadeIn second" name="name" formControlName="nombre" placeholder="Nombre">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="username">Nombre de usuario <b *ngIf="adminForm.get('user.username')?.hasError('required')">(Obligatorio)</b></label>
+                        <input type="text" id="username" class="fadeIn second" formControlName="username" name="username" placeholder="Username">
+                    </div>
                 </div>
-                <div class="form-group col-6">
-                    <label for="username">Nombre de usuario <b *ngIf="adminForm.get('username')?.hasError('required')">(Obligatorio)</b></label>
-                    <input type="text" [(ngModel)]="user.username" id="username" class="fadeIn second" formControlName="username" name="username" placeholder="Username">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="password">Contraseña <b *ngIf="adminForm.get('user.password')?.hasError('required')">(Obligatorio)</b></label>
+                        <input type="text" id="password" class="fadeIn third" name="password" formControlName="password" placeholder="Contraseña">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="repeat-password">Repetir contraseña</label>
+                        <input type="text" id="repeat-password" class="fadeIn second" name="repeat-password" placeholder="Repetir contraseña">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-6">
-                    <label for="password">Contraseña <b *ngIf="adminForm.get('password')?.hasError('required')">(Obligatorio)</b></label>
-                    <input type="text" [(ngModel)]="user.password" id="password" class="fadeIn third" name="password" formControlName="password" placeholder="Contraseña">
-                </div>
-                <div class="form-group col-6">
-                    <label for="repeat-password">Repetir contraseña</label>
-                    <input type="text" id="repeat-password" class="fadeIn second" name="repeat-password" placeholder="Repetir contraseña">
+                <div class="row" style="display:none">
+                    <div class="form-group col-12">
+                        <label for="userType">usertype hidden</label>
+                        <input type="text" id="userType" name="userType" formControlName="usertype" value="admin">
+                    </div>
                 </div>
             </div>
             <input type="submit" class="fadeIn fourth" value="Entrar">
         </form>
+        
 
         <!-- volver  -->
         <div id="formFooter" class="row">

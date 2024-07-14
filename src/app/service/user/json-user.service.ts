@@ -94,10 +94,13 @@ export class JsonUserService {
 
   // Obtener el usuario actual
   getCurrentUser(): any {
-    if (!this.currentUser) {
-      this.currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const userJson = localStorage.getItem('currentUser');
+      if (userJson) {
+        return JSON.parse(userJson);
+      }
     }
-    return this.currentUser;
+    return null;
   }
 
   // Cerrar sesión
